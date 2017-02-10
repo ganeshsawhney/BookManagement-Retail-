@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.abyeti.common.Book" table="book" catalog="bookmanagementdb">
+        <id name="bookid" type="java.lang.Integer">
+            <column name="bookid"/>
+            <generator class="identity" />
+        </id>
+        <property name="isbn" type="string">
+            <column name="isbn" length="20" not-null="true" unique="true" />
+        </property>
+        <property name="bkname" type="string">
+            <column name="bkname" length="20" not-null="true" unique="true" />
+        </property>
+        <property name="authorname" type="string">
+            <column name="authorname" length="20" not-null="true" unique="false" />
+        </property>
+        <property name="available_units" type="java.lang.Integer">
+            <column name="available_units" />
+        </property>
+    </class>
+</hibernate-mapping>
