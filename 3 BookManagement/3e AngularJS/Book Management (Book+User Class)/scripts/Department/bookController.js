@@ -1,20 +1,14 @@
 (function() {
     var DeptApp = angular.module('DeptApp');
-    DeptApp.controller('BookController', function($scope) {
-        $scope.counter=0;
-        $scope.BookModel = {
-            isbn: 0,
-            name: "",
-            authorId: 0,
-            edition: "",
-            price: 0,
-            availableUnits: 0,
-        };
+    DeptApp.controller('BookController', function($scope, BookService) {
 
-        $scope.BookList = [];
+        $scope.counter = BookService.counter;
+        $scope.BookModel = BookService.BookModel;
+        $scope.BookList = BookService.BookList;
+
         $scope.AddData = function(val) {
-          if(val == false)
-          return;
+            if (val == false)
+                return;
             var _Book1 = {
                 isbn: $scope.counter + 1,
                 name: $scope.BookModel.name,
@@ -69,7 +63,7 @@
             $scope.BookModel.edition = "";
             $scope.BookModel.price = 0;
             $scope.BookModel.availableUnits = 0;
-                    }
+        }
     });
 
 }());
