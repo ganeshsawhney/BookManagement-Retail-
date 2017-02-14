@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html data-ng-app="demoApp">
+<head>
+    <title>Book Management Retail</title>
+    <script src="angular.min.js"></script>
+    <script src="angular-route.js"></script>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+  <div class="container" ng-controller="SimpleController">
+      <div>
+          <div data-ng-view></div>
+      </div>
+  </div>
+
+  <script>
+      var demoApp=angular.module('demoApp',["ngRoute"]);
+      demoApp.factory('simpleFactory', function () {
+          var factory = {};
+          var customers = [
+              { name: 'Dave Joes', city: 'Phoenix' },
+              { name: 'Jamie Riley', city: 'Atlanta' },
+              { name: 'Heedy Wahlin', city: 'Chandler' },
+              { name: 'Thomas Winter', city: 'Seattle' }
+          ];
+
+          factory.getCustomers = function () {
+              //Can use $http object to retrieve remote data
+              //in a "real" app
+              return customers;
+          };
+          return factory;
+      });
+
+      demoApp.config(function ($routeProvider, $locationProvider) {
+
+          $locationProvider.hashPrefix('');
+          $routeProvider
+              .when('/view1',
+                  {
+                      controller: 'SimpleController',
+                      templateUrl: 'Partials/7_Partial1.html'
+                  })
+              //Define a route that has a route parameter in it (:customerID)
+              .when('/view2',
+                  {
+                      controller: 'SimpleController',
+                      templateUrl: 'Partials/7_Partial2.html'
+                  })
+              .otherwise({ redirectTo: '/view1' });
+      });
+
+      demoApp.controller('SimpleController', function ($scope,simpleFactory) {
+        $scope.customers = [];
+
+        init();
+
+        function init() {
+           $scope.customers = simpleFactory.getCustomers();
+        }
+      });
+  </script>
+</body>
+</html>
