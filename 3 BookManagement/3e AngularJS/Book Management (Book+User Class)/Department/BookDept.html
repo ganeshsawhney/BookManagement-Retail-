@@ -1,8 +1,11 @@
 <script src="scripts/formDisplay.js" charset="utf-8"></script>
 <link rel="stylesheet" href="styles/formDisplay.css">
+
+<h3 align="center"> BOOK DEPARTMENT </h3>
+<br>
 <div class="container">
     <table class="table table-hover">
-        <thead  class="thead-inverse">
+        <thead class="thead-inverse">
             <tr>
                 <th>ISBN</th>
                 <th>Name</th>
@@ -30,7 +33,7 @@
         <tr data-ng-repeat="Book in BookList | filter:search">
             <td>{{ Book.isbn }}</td>
             <td>
-                <div id="{{ Book.isbn }}name" class="{{ Book.isbn }}text">{{ Book.name }}</div> <input id="name" value="{{ Book.name }}" data-ng-model="EditBook.name" name="name" type="text" class="{{ Book.isbn }}input editInput form-control" required></td>
+                <div id="{{ Book.isbn }}name" class="{{ Book.isbn }}text">{{ Book.name }}</div> <input id="name"  pattern="[a-zA-Z0-9\s]+" value="{{ Book.name }}" data-ng-model="EditBook.name" name="name" type="text" class="{{ Book.isbn }}input editInput form-control" required></td>
             <td>
                 <div id="{{ Book.isbn }}authorId" class="{{ Book.isbn }}text">{{ Book.authorId }}</div> <input id="authorId" data-ng-model="EditBook.authorId" name="authorId" type="number" class="{{ Book.isbn }}input editInput form-control" required></td>
             <td>
@@ -64,7 +67,7 @@
                 </td>
                 <td>
                     <div class="form-group">
-                        <input ng-model="BookModel.name" name="name" type="text" class="form-control" required>
+                        <input ng-model="BookModel.name" pattern="[a-zA-Z0-9\s]+" name="name" type="text" class="form-control" required>
                     </div>
                 </td>
                 <td>
@@ -89,7 +92,7 @@
                 </td>
                 <td>
                     <div class="form-group">
-                        <button class="btn btn-info btn-sm"  ng-click="AddData(myform.$valid)" type="submit" name="action">
+                        <button class="btn btn-info btn-sm" ng-click="AddData(myform.$valid)" type="submit" name="action">
                           <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </div>

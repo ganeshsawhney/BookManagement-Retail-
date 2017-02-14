@@ -9,7 +9,7 @@
                 templateUrl: 'Department/BookDept.html'
             })
             .when('/users', {
-                controller: 'DeptController',
+                controller: 'UserController',
                 templateUrl: 'Department/UserDept.html'
             })
             .when('/sales', {
