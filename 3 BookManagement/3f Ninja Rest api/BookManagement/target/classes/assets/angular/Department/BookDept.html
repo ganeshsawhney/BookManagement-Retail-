@@ -1,0 +1,105 @@
+<script src="scripts/formDisplay.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/assets/angular/styles/formDisplay.css">
+<script src="/assets/js/angular-resource.js"></script>
+
+<h3 align="center"> BOOK DEPARTMENT </h3>
+<br>
+<div class="container">
+    <table class="table table-hover">
+        <thead class="thead-inverse">
+            <tr>
+                <th>ISBN</th>
+                <th>Name</th>
+                <th>Author ID</th>
+                <th>Edition</th>
+                <th>Price</th>
+                <th>Available Units</th>
+                <th>Functions</th>
+            </tr>
+            <tr>
+                <th><input class="form-control" type="number" ng-model="search.isbn"></th>
+                <th><input class="form-control" type="text" ng-model="search.name"></th>
+                <th><input class="form-control" type="number" ng-model="search.authorId"></th>
+                <th><input class="form-control" type="text" ng-model="search.edition"></th>
+                <th><input class="form-control" type="number" ng-model="search.price"></th>
+                <th><input class="form-control" type="number" ng-model="search.availableUnits"></th>
+                <th>
+                    <button type="button" class="btn btn-info btn-sm" ng-click="search = undefined">
+                        <span class="glyphicon glyphicon-search"></span> Clear Search
+                      </button>
+                </th>
+            </tr>
+        </thead>
+
+        <tr data-ng-repeat="Book in BookList | filter:search">
+            <td>{{ Book.isbn }}</td>
+            <td>
+                <div id="{{ Book.isbn }}name" class="{{ Book.isbn }}text">{{ Book.name }}</div> <input id="name"  pattern="[a-zA-Z0-9\s]+" value="{{ Book.name }}" data-ng-model="EditBook.name" name="name" type="text" class="{{ Book.isbn }}input editInput form-control" required></td>
+            <td>
+                <div id="{{ Book.isbn }}authorId" class="{{ Book.isbn }}text">{{ Book.authorId }}</div> <input id="authorId" data-ng-model="EditBook.authorId" name="authorId" type="number" class="{{ Book.isbn }}input editInput form-control" required></td>
+            <td>
+                <div class="{{ Book.isbn }}text">{{ Book.edition }}</div> <input id="edition" data-ng-model="EditBook.edition" name="edition" type="text" class="{{ Book.isbn }}input editInput form-control" required></td>
+            <td>
+                <div class="{{ Book.isbn }}text">{{ Book.price }}</div> <input id="price" data-ng-model="EditBook.price" name="price" type="number" class="{{ Book.isbn }}input editInput form-control" required></td>
+            <td>
+                <div class="{{ Book.isbn }}text">{{ Book.availableUnits }}</div> <input id="availableUnits" data-ng-model="EditBook.availableUnits" name="availableUnits" type="number" class="{{ Book.isbn }}input editInput form-control" required></td>
+            <td colspan="2">
+                <button id="{{ Book.isbn }}" class="updateButton btn btn-info btn-sm">
+                <span class="glyphicon glyphicon-edit"></span>
+                </button>
+                <button id="{{ Book.isbn }}updateSave" class="updateSave btn btn-success btn-sm" data-ng-click="UpdateData(Book.isbn,EditBook)">
+                <span class="glyphicon glyphicon glyphicon-floppy-save"></span>
+                </button>
+                <button class="btn btn-danger btn-sm" data-ng-click="DelData(true,Book.isbn)">
+                <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </td>
+        </tr>
+
+    </table>
+
+    <form name="myform">
+        <table id="adddata" class="table table-hover">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <input ng-model="BookModel.isbn" pattern="[a-zA-Z0-9\s]+" name="isbn" type="number" class="form-control" required>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input ng-model="BookModel.name" pattern="[a-zA-Z0-9\s]+" name="name" type="text" class="form-control" required>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input ng-model="BookModel.authorId" name="authorId" type="number" class="form-control" min="1" required>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input ng-model="BookModel.edition" name="edition" type="text" class="form-control" required>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input ng-model="BookModel.price" name="price" type="number" class="form-control" min="0" required>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input ng-model="BookModel.availableUnits" name="availableUnits" type="number" class="form-control" min="1" required>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <button class="btn btn-info btn-sm" ng-click="AddData(myform.$valid)"  type="submit" name="action">
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <b>{{ ResponseDetails }}</b>
+</div>

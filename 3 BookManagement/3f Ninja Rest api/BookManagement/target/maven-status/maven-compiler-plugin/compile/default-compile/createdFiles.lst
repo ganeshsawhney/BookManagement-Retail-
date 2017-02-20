@@ -1,0 +1,4 @@
+conf/Module.class
+conf/Routes.class
+controllers/ApplicationController.class
+models/Book.class
