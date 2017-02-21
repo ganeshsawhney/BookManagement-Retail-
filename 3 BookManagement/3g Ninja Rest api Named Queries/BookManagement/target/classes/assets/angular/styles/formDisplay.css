@@ -1,0 +1,16 @@
+.editInput {
+    display: none;
+}
+
+.updateSave {
+    display: none;
+}
+
+#adddata{
+    table-layout: fixed;
+}
+
+thead th {
+    background-color: #4CAF50 ;
+    color: white;
+}
